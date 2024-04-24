@@ -8,20 +8,18 @@ def incorrect_ticker(request):
     return render(request, "incorrect-ticker.html")
 
 def display_ticker_info(request):
-    try:
-        ticker_obj = TickerBase(request.POST["ticker"])
-        current_info = ticker_obj.get_info()
-        if current_info["trailingPegRatio"] == None: 
-            return render(request, "incorrect-ticker.html")
-        current_price = current_info["currentPrice"]
-        if current_price == None: raise KeyError
-        full_name = "PLACEHOLDER"
-        full_name = current_info["longName"]
-        if full_name == None: raise KeyError
-    except KeyError:
-        print("ERROR OCCURRED")
-        print(current_info.keys())
-        current_price = current_info["previousClose"]
-        full_name = current_info["longName"]
+    ticker_obj = TickerBase(request.POST["ticker"])
 
-    return render(request, "display-ticker-info.html", {"current_price":current_price, "full_name":full_name})
+    keys_used = ["currentPrice", "symbol", "longName", "averageVolume10days", "quoteType", "dayHigh", "dayLow", "regularMarketOpen", "regularMarketPreviousClose"]
+
+    current_info = ticker_obj.get_info()
+    if len(current_info) < 3: 
+        return render(request, "incorrect-ticker.html")
+    
+    for key in keys_used:
+        try:
+           current_info[key]
+        except KeyError:
+            current_info[key] = "Not found"
+
+    return render(request, "display-ticker-info.html", {"data": current_info})
