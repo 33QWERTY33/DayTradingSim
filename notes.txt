@@ -1,0 +1,43 @@
+Overview:
+    A day trading simulator using real time stock data:
+        Components:
+            - Multithreading
+            - yfinance API
+            - django
+            - MySQL db, or sqlite to store account data
+        Explanation:
+            - gather real time stock data using looping and yfinance API
+
+Current Task:
+    create a view for a page that has a form that allows you to input a ticker and does a valid api request using yfinance api
+
+Notes:
+    - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
+    'open', 'previousClose', 'quoteType', 'regularMarketPreviousClose', 'shares', 'tenDayAverageVolume', 'threeMonthAverageVolume', 'timezone',\
+    'twoHundredDayAverage', 'yearChange', 'yearHigh', 'yearLow]
+    - get_news on a TickerBase object gets you all of the recent news articles about the stock (plug into component of website with links?)
+    - as_dict is a boolean param that determines whether you want your data formatted as a dictionary or not, seems useful
+    - get_info gives you a huge dictionary of info to work with, this will be the basis of the info you're given
+    - history() also has useful info (use period param pass "max" to get all data)
+    - history method parameters docstring info:
+        :Parameters:
+            period : str
+                Valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max
+                Either Use period parameter or use start and end
+            interval : str
+                Valid intervals: 1m,2m,5m,15m,30m,60m,90m,1h,1d,5d,1wk,1mo,3mo
+                Intraday data cannot extend last 60 days
+            start: str
+                Download start date string (YYYY-MM-DD) or _datetime, inclusive.
+                Default is 99 years ago
+                E.g. for start="2020-01-01", the first data point will be on "2020-01-01"
+            end: str
+                Download end date string (YYYY-MM-DD) or _datetime, exclusive.
+                Default is now
+                E.g. for end="2023-01-01", the last data point will be on "2022-12-31"
+
+
+Features Proposal
+    - a line graph visual of the buy price, utilize history method
+
+study: FIGURE OUT HOW TO LINK FRIGGIN CSS FILES
