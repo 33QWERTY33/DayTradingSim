@@ -15,9 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from TradingSim.views import get_ticker, display_ticker_info
+from TradingSim.views import get_ticker, display_ticker_info, incorrect_ticker
 
 urlpatterns = [
     path('get-ticker/', get_ticker),
-    path("display-ticker-info", display_ticker_info)
+    path("display-ticker-info", display_ticker_info),
+    path("incorrect-ticker", incorrect_ticker)
 ]
