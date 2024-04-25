@@ -1,6 +1,13 @@
 from yfinance.base import TickerBase
 from django.shortcuts import render
 
+def log_in(request):
+    return render(request, "log-in.html")
+
+def home(request):
+    # gather user information to display to page
+    return render(request, "home.html", {"PLACEHOLDER": "PLACEHOLDER"})
+
 def get_ticker(request):
     return render(request, "get-ticker.html")
 
