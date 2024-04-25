@@ -18,7 +18,7 @@ from django.urls import path
 from TradingSim.views import get_ticker, display_ticker_info, incorrect_ticker, log_in, home
 
 urlpatterns = [
-    path("log-in/", log_in),
+    path("login/", log_in),
     path("home/", home),
     path('get-ticker/', get_ticker),
     path("display-ticker-info", display_ticker_info),
