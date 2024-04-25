@@ -20,5 +20,10 @@
     <p>Volume: {{ data.volume }}</p>
     <p>Average 10 day volume: {{ data.averageVolume10days }}</p>
     <p>Type: {{ data.quoteType }}</p>
+
+    <h3>Recent News: </h3>
+        {% for article in news %}
+        <a href="{{ article.link }}">{{ article.title }}</a>
+        {% endfor %}
 </body>
 </html>

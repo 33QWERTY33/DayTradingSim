@@ -26,8 +26,7 @@ def display_ticker_info(request):
            current_info[key]
         except KeyError:
             current_info[key] = "Not found"
-    
 
-    print(ticker_obj.get_news())
+    news = ticker_obj.get_news()
 
-    return render(request, "display-ticker-info.html", {"data": current_info})
+    return render(request, "display-ticker-info.html", {"data": current_info, "news": news})
