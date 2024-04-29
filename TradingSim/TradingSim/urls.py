@@ -20,9 +20,9 @@ from TradingSim.views import log_in, home
 from TickerApp import urls
 
 urlpatterns = [
-    path('', log_in),
-    path('admin/', admin.site.urls),
-    path("login/", log_in),
-    path("home/", home),
+    path('', log_in, name="login"),
+    path('admin/', admin.site.urls, name="admin"),
+    path("login/", log_in, name="login"),
+    path("home/", home, name="home"),
     path("ticker/", include('TickerApp.urls'))
 ]

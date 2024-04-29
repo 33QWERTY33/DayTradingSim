@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'ticker:ticker-info' %}" , method="post">
+    <form action="{% url 'ticker:ticker-info' %}" method="post">
         {% csrf_token %}
         <label for="ticker">ticker: </label>
         <input type="text" id="ticker" name="ticker" class="form-control">
