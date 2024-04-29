@@ -14,13 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
-from TradingSim.views import get_ticker, display_ticker_info, incorrect_ticker, log_in, home
+from django.contrib import admin
+from django.urls import path, include
+from TradingSim.views import log_in, home
+from TickerApp import urls
 
 urlpatterns = [
+    path('', log_in),
+    path('admin/', admin.site.urls),
     path("login/", log_in),
     path("home/", home),
-    path('get-ticker/', get_ticker),
-    path("display-ticker-info", display_ticker_info),
-    path("incorrect-ticker", incorrect_ticker),
+    path("ticker/", include('TickerApp.urls'))
 ]

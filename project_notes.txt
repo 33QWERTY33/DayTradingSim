@@ -9,7 +9,7 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    create a view for a page that has a form that allows you to input a ticker and does a valid api request using yfinance api
+    touch up the nav bar and tie it to the different end points
 
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
@@ -38,6 +38,6 @@ Notes:
 
 
 Features Proposal
-    - a line graph visual of the buy price, utilize history method
+    - a line graph visual of the buy price, utilize history method, potentially matplotlib
 
-study: FIGURE OUT HOW TO LINK FRIGGIN CSS FILES
+DB password: TotallyEasyToRemember!?

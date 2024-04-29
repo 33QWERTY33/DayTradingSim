@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'TickerApp'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'TradingSim.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Accounts',
+        'HOST': 'tradingsimaccountdata.cl06m4ie8jy6.us-east-2.rds.amazonaws.com',
+        'USER': 'root',
+        'PASSWORD': 'TotallyEasyToRemember!?',
+        'PORT': 3306
     }
 }
 
@@ -118,7 +123,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR
+    BASE_DIR / 'static'
 ]
 
 # Default primary key field type

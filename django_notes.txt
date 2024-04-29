@@ -1,0 +1,125 @@
+to add css and js:
+    - you need a folder named static in the same level as the templates folder.
+    - you can add whatever folder hierarchy you want inside of that folder.
+    - You need to create a constant var in the settings.py file called STATICFILES_DIRS that stores a list of static file directories
+    - you then add indexes to the list of a similar syntax as this: os.path.join(BASE_DIR, 'static')
+    - add css stylesheets to templates using django template engine
+        - add {% load static %} to show that you will be loading static files in the header
+        - you then link using the tag as shown: <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    - explanations: in settings.py you set the static directory, when you say {% load static %}, you are loading from that directory, then in the actual href property of the link tag you are just providing the full path the static file you want to load 
+
+creating apps:
+    - command is manage.py startapp <appname>
+
+views:
+    - to show model data in a view you need to import the model into the views .py file
+    - you can pass whatever data you need as the context parameter in a dictionary where it will be accessible using json syntax on the client side
+    - you can then simply use the django template engine syntax for a for loop to iterate through all of the values in the context of the web page
+    - to get an individual slugs data, you can simply use the syntax <var> = <model_name>.objects.get(<col_name>=<param_passed_into_view_from_href_link>)
+    - the param being passed through is done through the href attribute in the template where you simply pass another argument like so: href="{% url 'posts:page' slug=post.slug %}" where slug= is the parameter being passed
+
+layouts:
+    - django template engine can be used to create an django-html file known as a layout.
+    - layouts can create a general overview for html files that have interchangeable components known as blocks.
+    - you can use these layouts inside of a template using {% extends 'layout.html' %} where layout.html is the name of the layout you defined, though layout is the convention
+    - all you have to do to plug in custom content is to use {% block <block name> %}<content>{% endblock %}
+    - this is also a good way to load static files across all templates without having to load them manually for each template
+
+models:
+    - migration takes python code and turns it into a database table
+    - py manage.py migrate does not migrate your custom models
+    - py manage.py makemigrations creates a model using your python class in the models.py file
+    - when you change a model you need to run makemigrations again to apply changes
+    - makemigrations creates a folder with your custom model inside
+    - you can then run py manage.py migrate to migrate your custom models
+
+ORM:
+    - ORM: Object Relational Mapping
+    - py manage.py shell runs an interactive shell where you can interact with your models
+    - you can import your model, then create an instance, this instantiates the model object... obviously
+    - you can assign data to the attributes of that model instance using typical . notation to access the attributes
+    - you save that instance to the database using <instance_var>.save()
+    - to view all objects in your database, you can run <model name>.objects.all() by default this returns: <QuerySet [<Post: Post object (1)>]>
+    - you can use the __str__ method to change the representation to something easier to view such as: <QuerySet [<Post: My First Post!>]> where the value of post: is the title of the post
+    - no migration is necessary to add methods to a model class
+
+django admin interface:
+    - py manage.py createsuperuser allows you to create a super user account in django
+    - admin panel can be used as a CMS (Content Management System)
+    - if you want to view any custom models inside of the admin dashboard you need to "register" them in the admin.py file
+    - all you need to do is import the model, then write the line: admin.site.register(<model name>) 
+    - the django admin interface allows you to interact with the data that is tied to your webpage
+
+url:
+    - to tie the routes into the project you need to go to the settings.py file, inside of TEMPLATES, go to DIRS, and add the directory to the templates (this is so the render function in the returns of your view functions will be able to map to the proper template)
+    - urls are created inside of the urlpatterns list variable
+    - the individual routes are created using the django.urls.path function
+    - the path function takes 3 main arguments: route, view, name
+    - django.urls.include lets you include the router from a seperate app, automatically prepending the app name to the route
+    - when you supply a name argument in the path function, you can then refer to that url inside of the django templating engine with the typical {% url '<url name>' %} syntax
+    - path converter information can be found here: https://docs.djangoproject.com/en/5.0/topics/http/urls/
+    - slug is a path converter that matches a slug string consisting of ascii letters or numbers
+    - the syntax for a path converter is place inside the route parameter of the path function in the urls.py file and looks like so: <slug:slug> where the first slug is the name of the desired converter and the second slug happens to be the name of the parameter we are passing to the converter
+    - to capture the parameter being used in the request handler aka. the view function, you define it as a parameter so that the request can pass it by default
+    - to have more specific url endpoints for different apps to avoid name collisions you can set a variable called app_name inside of the urls.py file
+    - the syntax for the the more specific url endpoints in the href attribute for example is "{% url '<app_name>:<endpoint_name>'  %}"
+    - when using path converters, other urls have to be listed above the url converter path index
+
+media:
+    - to use media you need to edit your settings.py file
+    - you add the MEDIA_URL variable and set it to the name of your media file, likely 'media'
+    - you then add the MEDIA_ROOT variable and set it to BASE_DIR / <media_directory_name>
+    - you do the following import into the urls.py file to add statics: from django.conf.urls.static import static
+    - you do the following import into the urls.py file to add your settings: from django.conf import settings
+    - the following line is added to the end of urls.py to link your media directory: urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    - Pillow is the standard imaging library used for images in django, it is what allows you to use the ImageField model field in the model you're working with
+    - inside of the admin interface you can manually add image files from your host machine
+    - When adding images through the admin interface these files automatically get stored in the root project directory under the media folder
+    - when using images you simply have to add the field to the model, use the ImageField model field, then access the image using the dot notation in the web page html using the django template engine syntax
+
+UserCreationForm:
+    - the django UserCreationForm class facilitates the creation of other users for a django project
+    - you have to import UserCreationForm from django.contrib.auth.forms
+    - you then instantiate the form, and pass the form instance into the context parameter
+    - the form is then loaded using the template engine block syntax
+    - if the form is valid you want to use the familiar save method on the form to save it to the database table that django uses for users
+    - to do post requests in django you need to list {% csrf_token %} in the html form to bypass django safety features
+
+AuthenticationForm:
+    - this is used in the same way that UserCreationForm is used, it simply facilitates logging in, very similar logic
+    - it has built in authentication through the is_valid() method
+    - it takes the post data from a form submission in the data param
+
+django.contrib.auth.login:
+    - when authentication form is valid, you want to use the login method
+    - the syntax to log in a user is as follows: login(request, form.get_user()) get_user will return the users info when the form is_valid
+    - when you use the login method and that account is true for staff status, you will gain access to the admin interface as well
+    - when trying to access admin interface using non-admin account you get the following msg: You are authenticated as <USERNAME>, but are not authorized to access this page. Would you like to login to a different account?
+
+django.contrib.auth.logout:
+    - you can pass the post request from a form to logout of an account
+
+protecting pages:
+    - the following line imports the decorator you need to prevent users that aren't logged in from accessing a web page: from django.contrib.auth.decorators import login_required
+    - you apply the protection like so: @login_required
+    - you pass the parameter login_url to redirect users that aren't logged in to the log in page
+    - you can add a hidden input that inputs the value behind request.GET.next to take the user to the webpage they want to go to after being logging in from the redirect
+    - inside of whatever view is related to that form, you can check if the hidden input name is present in the GET request, and if it is, redirect to the value behind the hidden input name
+    - this is useful to send users to the page they originally wanted to go to before getting redirected
+    - use conditional templating syntax to show different nav components based off of user.is_authenticated
+
+submitting a form:
+    - when creating a form that will post request a non text data type, you have to set enctype attribute inside of the form tag to "multipart/form-data"
+    - you create a new python file called forms.py
+    - inside the new file goes a class
+    - you nest a class inside called Meta where the model class attr is equal to the model aka. table you are going to submit your data to
+    - then you list the fields that you get from the model for what you want to appear in the form
+    - to access the built in user object in django you import User from django.contrib.auth.models
+    - to tie data from other tables such as User data, you just have to use the models.ForeignKey model field
+    - to add the new form data to whatever database you simply use the <instance>.save() syntax from earlier
+    - you can use .notation to set certain attributes that may not be entered by the form manually before saving the form data to the table
+
+updates and changes:
+    - you can change DEBUG to False inside of the settings.py file when you are done developing
+    - you should typically add 'localhost', and '127.0.0.1' to the ALLOWED_HOSTS list in settings.py
+    - you can use re_path in the url.py files to use regular expressions in routing

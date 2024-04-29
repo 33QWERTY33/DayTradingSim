@@ -1,0 +1,23 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}
+    Ticker Overview
+{% endblock %}
+
+{% block content %}
+    <h1>{{ data.symbol }} Information</h1>
+    <p>Current Price: {{ data.currentPrice }}</p>
+    <p>Days High: {{ data.dayHigh }}</p>
+    <p>Days Low: {{ data.dayLow }}</p>
+    <p>Open: {{ data.regularMarketOpen }}</p>
+    <p>Close: {{ data.regularMarketPreviousClose }}</p>
+    <p>Full Name: {{ data.longName }}</p>
+    <p>Volume: {{ data.volume }}</p>
+    <p>Average 10 day volume: {{ data.averageVolume10days }}</p>
+    <p>Type: {{ data.quoteType }}</p>
+
+    <h3>Recent News: </h3>
+    {% for article in news %}
+        <a href="{{ article.link }}">{{ article.title }}</a><br/>
+    {% endfor %}
+{% endblock %}
