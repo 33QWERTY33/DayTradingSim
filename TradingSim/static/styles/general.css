@@ -5,3 +5,8 @@ body {
 a {
     text-decoration:solid;
 }
+
+.logout-button {
+    background: transparent;
+    border: none !important;
+}

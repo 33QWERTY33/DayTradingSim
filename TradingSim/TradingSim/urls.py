@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from TradingSim.views import log_in, home
+from TradingSim.views import home
 from TickerApp import urls
+from UsersApp import urls
 
 urlpatterns = [
-    path('', log_in, name="login"),
     path('admin/', admin.site.urls, name="admin"),
-    path("login/", log_in, name="login"),
-    path("home/", home, name="home"),
-    path("ticker/", include('TickerApp.urls'))
+    path("", home, name="home"),
+    path("ticker/", include('TickerApp.urls')),
+    path("user/", include('UsersApp.urls'))
 ]

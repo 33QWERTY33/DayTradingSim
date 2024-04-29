@@ -9,7 +9,7 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    touch up the nav bar and tie it to the different end points
+    add user log in, log out, sign up, and delete account functionality
 
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
