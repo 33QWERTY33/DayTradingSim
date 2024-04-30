@@ -38,42 +38,24 @@ def place_buy_order(request):
 def place_sell_order(request):
     if request.method == "POST":
         id = request.POST.get('id')
-        # try:
-        #     buy_order = BuyOrders.objects.get(id=id)
+        try:
+            buy_order = BuyOrders.objects.get(id=id)
 
-        #     sell_order = SellOrders()
-        #     sell_order.user = buy_order.user
-        #     sell_order.ticker = buy_order.ticker
-        #     sell_order.buyprice = buy_order.buyprice
-        #     sell_order.cashAmount = buy_order.cashAmount
-        #     sell_order.stockAmount = buy_order.stockAmount
-        #     sell_order.sellPrice = float(TickerBase(sell_order.ticker).get_info().get("currentPrice") or TickerBase(sell_order.ticker).get_info().get("navPrice"))
-        #     sell_order.profit = (buy_order.stockAmount * sell_order.sellPrice )- buy_order.cashAmount
-        #     sell_order.buydate = buy_order.buydate
-        #     sell_order.sellDate = datetime.now().date()
+            sell_order = SellOrders()
+            sell_order.user = buy_order.user
+            sell_order.ticker = buy_order.ticker
+            sell_order.buyprice = buy_order.buyprice
+            sell_order.cashAmount = buy_order.cashAmount
+            sell_order.stockAmount = buy_order.stockAmount
+            sell_order.sellPrice = float(TickerBase(sell_order.ticker).get_info().get("currentPrice") or TickerBase(sell_order.ticker).get_info().get("navPrice"))
+            sell_order.profit = (buy_order.stockAmount * sell_order.sellPrice )- buy_order.cashAmount
+            sell_order.buydate = buy_order.buydate
+            sell_order.sellDate = datetime.now().date()
 
-        #     buy_order.delete()
-        #     sell_order.save()
-        # except:
-        #     return redirect("ticker:incorrect-ticker")
-        
-        buy_order = BuyOrders.objects.get(id=id)
-
-        sell_order = SellOrders()
-        sell_order.user = buy_order.user
-        sell_order.ticker = buy_order.ticker
-        sell_order.buyprice = buy_order.buyprice
-        sell_order.cashAmount = buy_order.cashAmount
-        sell_order.stockAmount = buy_order.stockAmount
-        sell_order.sellPrice = float(TickerBase(sell_order.ticker).get_info().get("currentPrice") or TickerBase(sell_order.ticker).get_info().get("navPrice"))
-        sell_order.profit = (buy_order.stockAmount * sell_order.sellPrice )- buy_order.cashAmount
-        sell_order.buydate = buy_order.buydate
-        sell_order.sellDate = datetime.now().date()
-
-        print("ID >> ", id)
-
-        buy_order.delete()
-        sell_order.save()
+            buy_order.delete()
+            sell_order.save()
+        except:
+            return redirect("ticker:incorrect-ticker")
 
     currentOrders = BuyOrders.objects.filter(user=request.user).order_by("-buydate")
 
