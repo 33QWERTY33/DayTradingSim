@@ -9,5 +9,8 @@ def place_sell_order(request):
 
     return render(request, "place-sell-order.html", {"currentOrders": currentOrders})
 
-def order_details(request, order):
+def order_details(request, id):
+
+    order = BuyOrders.objects.get(id=id)
+
     return render(request, "order-details.html", {"order": order})

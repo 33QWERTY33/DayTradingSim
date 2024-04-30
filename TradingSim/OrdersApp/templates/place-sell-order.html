@@ -2,7 +2,10 @@
 
 {% block content %}
     <h1>Place a Sell Order</h1>
+    <form action="{% url 'order:sell-order'%}"></form>
     {% for order in currentOrders %}
-        <a href="{% url 'order:order-details'%}">--> {{order.buydate}} | {{ order.ticker }} | {{ order.stockAmount }} <--</a><br>
+        <a href="{% url 'order:order-details' id=order.id %}">
+            --> ID: {{ order.id }} | {{order.buydate}} | {{ order.ticker }} | {{ order.stockAmount }} <--
+        </a><br>
     {% endfor %}
 {% endblock content %}
