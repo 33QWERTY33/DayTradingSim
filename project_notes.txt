@@ -9,7 +9,7 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    add user log in, log out, sign up, and delete account functionality
+    add modal to verify that user wants to delete their account
 
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
