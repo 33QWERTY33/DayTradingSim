@@ -10,3 +10,8 @@ a {
     background: transparent;
     border: none !important;
 }
+
+.loading-graphic {
+    width: 100px;
+    height: 100px;
+}

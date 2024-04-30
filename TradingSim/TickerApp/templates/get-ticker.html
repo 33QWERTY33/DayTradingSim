@@ -5,10 +5,13 @@
 {% endblock %}
 
 {% block content %}
+    {% load static %}
+    <script src="{% static 'scripts/loading_graphic_trig.js' %}"></script>
+
     <form action="{% url 'ticker:ticker-info' %}" method="post">
         {% csrf_token %}
         <label for="ticker">ticker: </label>
         <input type="text" id="ticker" name="ticker" class="form-control">
-        <input class="btn btn-success" style="width:210px" type="submit"></input>
+        <input class="btn btn-success" id="loadModalTrigger"style="width:210px" type="submit"></input>
     </form>
 {% endblock %}

@@ -1,5 +1,6 @@
 from yfinance.base import TickerBase
-from django.shortcuts import render
+from yfinance.exceptions import YFinanceException
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -16,12 +17,13 @@ def display_ticker_info(request):
     keys_used = ["currentPrice", "symbol", "longName", "averageVolume10days", "quoteType", "dayHigh", "dayLow", "regularMarketOpen", "regularMarketPreviousClose"]
     # list of keys used in webpage to set default vals
 
+    try:
+        current_info = ticker_obj.get_info()
+    except YFinanceException:
+        return redirect("ticker:incorrect-ticker")
+
     current_info = ticker_obj.get_info()
-    # core information
-    if len(current_info) < 3: 
-        # bad request dict response has very few key:vals
-        return render(request, "incorrect-ticker.html")
-    
+
     try:
         current_info["currentPrice"]
     except KeyError:

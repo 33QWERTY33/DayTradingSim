@@ -1,7 +1,8 @@
-from yfinance.base import TickerBase
+def func():
+    try:
+        0/0
+    except ZeroDivisionError:
+        return 3
+    return 5
 
-PEY = TickerBase("123")
-
-from pprint import pprint
-
-pprint(PEY.get_info(), indent=2)
+print(func())
