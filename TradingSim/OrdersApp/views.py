@@ -20,12 +20,12 @@ def place_buy_order(request):
 
             new_buy_order.user = user
             new_buy_order.ticker = ticker
-            new_buy_order.buyprice = buyprice
+            new_buy_order.buyPrice = buyprice
             new_buy_order.stockAmount = stockAmount
             new_buy_order.cashAmount = cashAmount
             new_buy_order.sellTrigger = sellTrigger
             new_buy_order.pending = pending
-            new_buy_order.buydate = buydate
+            new_buy_order.buyDate = buydate
 
             new_buy_order.save()
         except:
@@ -40,16 +40,16 @@ def place_sell_order(request):
         id = request.POST.get('id')
         try:
             buy_order = BuyOrders.objects.get(id=id)
-
             sell_order = SellOrders()
+            sell_order.id = buy_order.id
             sell_order.user = buy_order.user
             sell_order.ticker = buy_order.ticker
-            sell_order.buyprice = buy_order.buyprice
+            sell_order.buyPrice = buy_order.buyPrice
             sell_order.cashAmount = buy_order.cashAmount
             sell_order.stockAmount = buy_order.stockAmount
             sell_order.sellPrice = float(TickerBase(sell_order.ticker).get_info().get("currentPrice") or TickerBase(sell_order.ticker).get_info().get("navPrice"))
             sell_order.profit = (buy_order.stockAmount * sell_order.sellPrice )- buy_order.cashAmount
-            sell_order.buydate = buy_order.buydate
+            sell_order.buyDate = buy_order.buyDate
             sell_order.sellDate = datetime.now().date()
 
             buy_order.delete()
@@ -57,7 +57,7 @@ def place_sell_order(request):
         except:
             return redirect("ticker:incorrect-ticker")
 
-    currentOrders = BuyOrders.objects.filter(user=request.user).order_by("-buydate")
+    currentOrders = BuyOrders.objects.filter(user=request.user).order_by("-buyDate")
 
     return render(request, "place-sell-order.html", {"currentOrders": currentOrders})
 

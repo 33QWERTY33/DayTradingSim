@@ -16,7 +16,7 @@
     <h3>Order Stubs For {{ user.username }}</h3>
     {% for order in currentOrders %}
         <a href="{% url 'order:buy-order-details' id=order.id %}">
-            --> ID: {{ order.id }} | {{order.buydate}} | {{ order.ticker }} | {{ order.stockAmount }} <--
+            --> ID: {{ order.id }} | {{order.buyDate}} | {{ order.ticker }} | {{ order.stockAmount }} <--
         </a><br>
     {% endfor %}
 {% endblock content %}

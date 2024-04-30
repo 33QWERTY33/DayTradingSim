@@ -10,7 +10,10 @@
         <a class="btn btn-success" href="{% url 'order:sell-order' %}">Sell Order</a>
 
         <h3>Trading stats: </h3>
-
+            <p>Total Profit: {{ stats.total_profit }}</p>
+            <p>Highest Profit: {{ stats.max_profit }}</p>
+            <p>Average Profit: {{ stats.avg_profit }}</p>
+            <p>Average Buy/Sell Duration: {{ stats.avg_buy_sell_duration }} days</p>
         <h3>Current Buy Orders: </h3>
             {% for buy_order in buy_orders %}
                 <a href="{% url 'order:buy-order-details' id=buy_order.id %}">
@@ -20,7 +23,7 @@
         <h3>Complete Sell Orders: </h3>
             {% for sell_order in sell_orders %}
                 <a href="{% url 'order:sell-order-details' id=sell_order.id %}">
-                    --> {{ sell_order.ticker }} | {{ sell_order.buyprice }} | {{ sell_order.sellprice }} | {{ sell_order.buydate }} | {{ sell_order.selldate }} | {{ sell_order.profit }} <--
+                    --> {{ sell_order.ticker }} | {{ sell_order.buyPrice }} | {{ sell_order.sellPrice }} | {{ sell_order.buyDate }} | {{ sell_order.sellDate }} | {{ sell_order.profit }} <--
                 </a><br>
             {% endfor %}
     {% else %}

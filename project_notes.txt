@@ -17,7 +17,7 @@ Improvement Ideas:
     - create a leaderboard for different users and put it in the navbar
     - add a confirmation modal with more info to the buy order, and sell order views
     - improve bootstrap styling throughout entire project
-
+    
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
     'open', 'previousClose', 'quoteType', 'regularMarketPreviousClose', 'shares', 'tenDayAverageVolume', 'threeMonthAverageVolume', 'timezone',\

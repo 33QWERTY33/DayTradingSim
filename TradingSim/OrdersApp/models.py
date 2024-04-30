@@ -5,27 +5,27 @@ class BuyOrders(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.CharField(max_length=50)
     ticker = models.CharField(max_length=5)
-    buyprice = models.FloatField()
+    buyPrice = models.FloatField()
     cashAmount = models.FloatField()
     stockAmount = models.FloatField()
     sellTrigger = models.FloatField()
     pending = models.BooleanField()
-    buydate = models.DateField()
+    buyDate = models.DateField()
 
     def __str__(self):
         return f"{self.user} bought {self.stockAmount} shares of {self.ticker} for {self.cashAmount}"
 
 
 class SellOrders(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     user = models.CharField(max_length=50)
     ticker = models.CharField(max_length=5)
-    buyprice = models.FloatField()
+    buyPrice = models.FloatField()
     cashAmount = models.FloatField()
     stockAmount = models.FloatField()
     sellPrice = models.FloatField()
     profit = models.FloatField()
-    buydate = models.DateField(default="1950-1-1")
+    buyDate = models.DateField(default="1950-1-1")
     sellDate = models.DateField(default="1950-1-1")
 
     def __str__(self):
