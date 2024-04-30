@@ -1,0 +1,34 @@
+{% extends "layouts/navbar.html" %}
+
+{% block confirmationModal %}
+    <div class="modal fade confirmation-modal" id="confirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content border">
+            <div class="modal-header bg-dark">
+            <h1 class="modal-title fs-5 bg-dark text-white">Are You Sure?</h1>
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark text-white">
+            By clicking "yes" you will delete the account that is currently signed in.
+            This account can not be recovered.
+            </div>
+            <div class="modal-footer bg-dark text-white">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <a class="nav-link active" aria-current="page" href="{% url 'user:delete-account' %}">Yes</a>
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock confirmationModal %}
+
+{% block loadingElement %}
+    <div class="invisible d-flex justify-content-center" id="loadingGraphic" tabindex="-1" aria-hidden="true">
+        <div class="spinner-border text-success loading-graphic" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+{% endblock loadingElement %}
+
+{% comment %} base -> navbar -> modals -> layout {% endcomment %}

@@ -28,12 +28,11 @@ def login_user(request):
     return render(request, "login.html", {"form": form})
 
 def logout_user(request):
-    if request.method == "POST":
-        logout(request)
-        return redirect("user:login")
+    logout(request)
+    return redirect("user:login")
 
 def delete_account(request):
     username = request.user
     user = User.objects.get(username=username)
-    user.delete()
+    # user.delete()
     return redirect("home")

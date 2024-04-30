@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>
+          {% block title%}
+              DayTradeSim
+          {% endblock %}
+      </title>
+      {% block links %}
+        PLACEHOLDER
+      {% endblock links %}
+  </head>
+  <body>
+    {% block navbar %}
+    PLACEHOLDER
+    {% endblock navbar %}
+    
+    {% block content%}
+    Add content here
+    {% endblock%}
+
+    {% block confirmationModal %}
+    
+    {% endblock confirmationModal %}
+
+    {% block loadingElement %}
+      PLACEHOLDER
+    {% endblock loadingElement %}
+  </body>
+</html>
+{% comment %} base -> navbar -> modals -> layout {% endcomment %}

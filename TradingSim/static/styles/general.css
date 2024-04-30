@@ -6,7 +6,7 @@ a {
     text-decoration:solid;
 }
 
-.logout-button {
+.navbar-button {
     background: transparent;
     border: none !important;
 }
@@ -14,4 +14,8 @@ a {
 .loading-graphic {
     width: 100px;
     height: 100px;
+}
+
+.confirmation-modal {
+    background-color: #000000;
 }
