@@ -1,10 +1,19 @@
 {% extends 'layouts/layout.html' %}
 
 {% block content %}
+
+    {% load static %}
+    <script src="{% static 'scripts/loading_graphic_trig.js' %}"></script>
+
     <h1>Place a Sell Order</h1>
-    <form action="{% url 'order:sell-order'%}">
+    <form action="{% url 'order:sell-order'%}" method="post">
         {% csrf_token %}
+        <label for="orderID">Order ID: </label>
+        <input type="text" name="id" required>
+
+        <button class="btn btn-success" id="loadModalTrigger">Submit</button>
     </form>
+    <h3>Order Stubs For {{ user.username }}</h3>
     {% for order in currentOrders %}
         <a href="{% url 'order:order-details' id=order.id %}">
             --> ID: {{ order.id }} | {{order.buydate}} | {{ order.ticker }} | {{ order.stockAmount }} <--

@@ -17,7 +17,7 @@ class BuyOrders(models.Model):
 
 
 class SellOrders(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     user = models.CharField(max_length=50)
     ticker = models.CharField(max_length=5)
     buyprice = models.FloatField()

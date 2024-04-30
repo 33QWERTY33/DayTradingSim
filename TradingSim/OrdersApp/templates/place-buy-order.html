@@ -1,6 +1,10 @@
 {% extends 'layouts/layout.html' %}
 
 {% block content %}
+
+    {% load static %}
+    <script src="{% static 'scripts/loading_graphic_trig.js' %}"></script>
+
     <h1>Place a Buy Order</h1>
     <form action="{% url 'order:buy-order' %}" method="post">
         {% csrf_token %}
@@ -15,6 +19,6 @@
         <label for="sellTrigger">Sell Trigger: </label>
         <input type="text" name="sellTrigger"><br>
 
-        <button class="btn btn-success">Submit</button>
+        <button class="btn btn-success" id="loadModalTrigger">Submit</button>
     </form>
 {% endblock content %}
