@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from TradingSim.views import home
+from TradingSim.views import home, info
 from TickerApp import urls
 from UsersApp import urls
 from OrdersApp import urls
@@ -24,6 +24,7 @@ from OrdersApp import urls
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path("", home, name="home"),
+    path("info/", info, name="info"),
     path("ticker/", include('TickerApp.urls')),
     path("user/", include('UsersApp.urls')),
     path("order/", include('OrdersApp.urls'))
