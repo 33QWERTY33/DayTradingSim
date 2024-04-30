@@ -1,8 +1,3 @@
-def func():
-    try:
-        0/0
-    except ZeroDivisionError:
-        return 3
-    return 5
+from datetime import datetime
 
-print(func())
+print(datetime.now().date())

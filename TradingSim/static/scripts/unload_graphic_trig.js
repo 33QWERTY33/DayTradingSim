@@ -13,4 +13,4 @@ const add_invisible = function(elementID) {
 
 document.addEventListener("DOMContentLoaded", ()=>{add_invisible("loadingGraphic")});
 
-window.addEventListener("beforeunload", ()=>{setTimeout(()=>{add_invisible("loadingGraphic")}, 1000)});
+window.addEventListener("beforeunload", ()=>{setTimeout(()=>{add_invisible("loadingGraphic")}, 1200)});

@@ -2,7 +2,9 @@
 
 {% block content %}
     <h1>Place a Sell Order</h1>
-    <form action="{% url 'order:sell-order'%}"></form>
+    <form action="{% url 'order:sell-order'%}">
+        {% csrf_token %}
+    </form>
     {% for order in currentOrders %}
         <a href="{% url 'order:order-details' id=order.id %}">
             --> ID: {{ order.id }} | {{order.buydate}} | {{ order.ticker }} | {{ order.stockAmount }} <--

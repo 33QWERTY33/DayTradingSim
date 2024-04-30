@@ -9,7 +9,7 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    - you probably want to create an info page at some point
+    - make buy order form add a record to the buyorder table
 
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
