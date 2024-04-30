@@ -61,8 +61,13 @@ def place_sell_order(request):
 
     return render(request, "place-sell-order.html", {"currentOrders": currentOrders})
 
-def order_details(request, id):
+def sell_order_details(request, id):
+    order = SellOrders.objects.get(id=id)
+
+    return render(request, "sell-order-details.html", {"order": order})
+
+def buy_order_details(request, id):
 
     order = BuyOrders.objects.get(id=id)
 
-    return render(request, "order-details.html", {"order": order})
+    return render(request, "buy-order-details.html", {"order": order})
