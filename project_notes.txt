@@ -9,12 +9,12 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    - show total profit, average buy-sell period, highest sale, in the Trading Stats: section of the home page
+    - extend User model to keep track of the amount of money left in a portfolio
+    - create a leaderboard for different users and put it in the navbar
+    
 Improvement Ideas:
     - create a matplotlib plot using some of the history data, save the image to a media directory, then load it to the frontend, possibly in the buy order details behind a button called generate
     - add a seperate coloring theme for aftermarket hours
-    - add an in-depth ticker information view
-    - create a leaderboard for different users and put it in the navbar
     - add a confirmation modal with more info to the buy order, and sell order views
     - improve bootstrap styling throughout entire project
     

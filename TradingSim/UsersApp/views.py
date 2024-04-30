@@ -2,13 +2,20 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
+from .models import UserPortfolio
 
 # Create your views here.
 def signup_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
+        print("FORM CREATED")
         if form.is_valid():
+            new_user_portfolio = UserPortfolio()
+            new_user_portfolio.username = form.data.get("username")
+            new_user_portfolio.portfolioAmount = 25_000
+            print("FORM WAS VALID")
             form.save()
+            new_user_portfolio.save()
             return redirect("home")
     else:
         form = UserCreationForm()

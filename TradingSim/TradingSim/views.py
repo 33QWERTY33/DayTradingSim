@@ -29,5 +29,4 @@ def home(request):
     return render(request, "home.html", {"buy_orders": buy_orders, "sell_orders": sell_orders, "stats": stats})
 
 def info(request):
-    # gather user information to display to page
     return render(request, "info.html")
