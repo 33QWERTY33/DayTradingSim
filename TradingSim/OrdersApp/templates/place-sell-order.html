@@ -1,0 +1,8 @@
+{% extends 'layouts/layout.html' %}
+
+{% block content %}
+    <h1>Place a Sell Order</h1>
+    {% for order in currentOrders %}
+        <a href="{% url 'order:order-details'%}">--> {{order.buydate}} | {{ order.ticker }} | {{ order.stockAmount }} <--</a><br>
+    {% endfor %}
+{% endblock content %}

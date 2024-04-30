@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'TradingSim.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Accounts',
+        'NAME': 'Data',
         'HOST': 'tradingsimaccountdata.cl06m4ie8jy6.us-east-2.rds.amazonaws.com',
         'USER': 'root',
         'PASSWORD': 'TotallyEasyToRemember!?',

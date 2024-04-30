@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Content Coming Soon...</h1>
+    {% if user.is_authenticated %}
+        <a class="btn btn-success" href="{% url 'order:buy-order' %}">Buy Order</a>
+        <a class="btn btn-success" href="{% url 'order:sell-order' %}">Sell Order</a>
+    {% else %}
+        <h1>Please log in to view the home page</h1>
+    {% endif %}
 {% endblock %}

@@ -19,10 +19,12 @@ from django.urls import path, include
 from TradingSim.views import home
 from TickerApp import urls
 from UsersApp import urls
+from OrdersApp import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path("", home, name="home"),
     path("ticker/", include('TickerApp.urls')),
-    path("user/", include('UsersApp.urls'))
+    path("user/", include('UsersApp.urls')),
+    path("order/", include('OrdersApp.urls'))
 ]

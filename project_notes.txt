@@ -9,7 +9,9 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    add db model to keep track of users market orders
+    set up views for OrdersApp: place_buy_order, place_sell_order (in the confirmation modal there can possibly be an XMLHttpRequest sent to fill in some data like the name of the company to make sure the user is buying the one they want)
+    subtask:
+        - you probably want to create an info page at some point
 
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
