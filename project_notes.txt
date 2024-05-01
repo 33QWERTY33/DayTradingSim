@@ -9,14 +9,13 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    - prevent a user without enough money from placing an order too big
+    - add totalPortfolio percentage stat to buyorders
     
 Improvement Ideas:
     - add a confirmation modal with more info to the buy order, and sell order views (currently there is just a regular conf modal, I can implement the increase information idea by adding blocks into the modal, then placing the data gathered from the view inside of the blocks inside of the place-buy-order and place-sell-order views)
     - create a leaderboard for different users and put it in the navbar 
     - create a matplotlib plot using some of the history data, save the image to a media directory, then load it to the frontend, possibly in the buy order details behind a button called generate
     - add a seperate coloring theme for aftermarket hours
-    - improve bootstrap styling throughout entire project
     - implement the sell trigger using the history method of the yfinance api
     
 Notes:

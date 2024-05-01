@@ -4,7 +4,7 @@
     Home
 {% endblock %}
 
-{% block content %}
+{% comment %} {% block content %}
     {% if user.is_authenticated %}
         <a class="btn btn-success" href="{% url 'order:buy-order' %}">Buy Order</a>
         <a class="btn btn-success" href="{% url 'order:sell-order' %}">Sell Order</a>
@@ -32,4 +32,143 @@
     {% else %}
         <h1>Please log in to view the home page</h1>
     {% endif %}
-{% endblock %}
+{% endblock %} {% endcomment %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="d-flex container justify-content-center">
+    <h1 class='text-center'>Trading Stats</h1>
+</div>
+<div class="d-flex container justify-content-center">
+    <table style="width:90%" class="table table-dark table-bordered">
+        <thead>
+        <tr>
+            <th class="text-center" scope="col">Total Profit So Far</th>
+            <th class="text-center" scope="col">Highest Profit</th>
+            <th class="text-center"scope="col">Average Profit</th>
+            <th class="text-center"scope="col">Average buy/sell Cycle In Days</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th class="text-center">{{ stats.total_profit }}</th>
+            <th class="text-center">{{ stats.max_profit }}</th>
+            <th class="text-center">{{ stats.avg_profit }}</th>
+            <th class="text-center">{{ stats.avg_buy_sell_duration }}</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex container justify-content-center">
+    <h1 class='text-center'>Portfolio</h1>
+</div>
+<div class="d-flex container justify-content-center">
+    <table  style="width:90%" class="table table-dark table-bordered">
+        <thead>
+        <tr>
+            <th class="text-center" scope="col">Portfolio Total</th>
+            <th class="text-center" scope="col">Liquid</th>
+            <th class="text-center" scope="col">Invested</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th class="text-center">{{ stats.total_portfolio }}</th>
+            <th class="text-center">{{ stats.liquid_portfolio }}</th>
+            <th class="text-center">{{ stats.invested_portfolio }}</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex container justify-content-center">
+    <h1 class='text-center'>Current Floating Buy Orders</h1>
+</div>
+<div class="d-flex container justify-content-center">
+    <table style="width:75%" class="table table-dark table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Date</th>
+            <th scope="col">Stock Amount</th>
+            <th scope="col">% of Portfolio</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for buy_order in stats.buy_orders %}
+            <tr>
+                <td>
+                    <a href="{% url 'order:buy-order-details' id=buy_order.id %}">{{ buy_order.id }}</a>
+                </td>
+                <td>
+                    {{ buy_order.ticker }}
+                </td>
+                <td>
+                    {{ buy_order.buyDate }}
+                </td>
+                <td>
+                    {{ buy_order.stockAmount }}
+                </td>
+                <td>
+                    {{ buy_order.totalPercentage }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex container justify-content-center">
+    <h1 class='text-center'>Current Sell Orders</h1>
+</div>
+<div class="d-flex container justify-content-center">
+    <table style="width:75%" class="table table-dark table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ticker</th>
+            <th scope="col">Buy Date</th>
+            <th scope="col">Sell Date</th>
+            <th scope="col">Stock Amount</th>
+            <th scope="col">% of Total Profit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for sell_order in stats.sell_orders %}
+            <tr>
+                <td>
+                    <a href="{% url 'order:sell-order-details' id=sell_order.id %}">{{ sell_order.id }}</a>
+                </td>
+                <td>
+                    {{ sell_order.ticker }}
+                </td>
+                <td>
+                    {{ sell_order.buyDate }}
+                </td>
+                <td>
+                    {{ sell_order.sellDate }}
+                </td>
+                <td>
+                    {{ sell_order.stockAmount }}
+                </td>
+                <td>
+                    {{ sell_order.totalPercentage }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex container justify-content-center">
+    <a class="btn btn-success btn-lg mx-5" href="{% url 'order:buy-order' %}">Buy Order</a>
+    <a class="btn btn-success btn-lg" href="{% url 'order:sell-order' %}">Sell Order</a>
+</div>
+{% else %}
+<h1 class="text-center">Please log in to view the home page</h1>
+{% endif %}
+{% endblock content %}

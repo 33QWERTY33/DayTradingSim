@@ -3,8 +3,10 @@ from .models import BuyOrders, SellOrders
 from yfinance.base import TickerBase
 from datetime import datetime
 from UsersApp.models import UserPortfolio
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url="/user/login")
 def place_buy_order(request):
     user_portfolio = UserPortfolio.objects.get(username=request.user)
     if request.method == "POST":
@@ -37,7 +39,7 @@ def place_buy_order(request):
         return redirect("home")
     return render(request, "place-buy-order.html", {"portfolio": user_portfolio})
     
-
+@login_required(login_url="/user/login")
 def place_sell_order(request):
     user_portfolio = UserPortfolio.objects.get(username=request.user)
     if request.method == "POST":

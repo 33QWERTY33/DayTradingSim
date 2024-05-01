@@ -10,6 +10,7 @@ class BuyOrders(models.Model):
     stockAmount = models.FloatField()
     sellTrigger = models.FloatField()
     buyDate = models.DateField()
+    totalPercentage = None
 
     def __str__(self):
         return f"{self.user} bought {self.stockAmount} shares of {self.ticker} for {self.cashAmount}"
@@ -26,6 +27,7 @@ class SellOrders(models.Model):
     profit = models.FloatField()
     buyDate = models.DateField(default="1950-1-1")
     sellDate = models.DateField(default="1950-1-1")
+    totalPercentage = None
 
     def __str__(self):
         return f"{self.user} sold {self.stockAmount} shares of {self.ticker} for {self.profit} profit"
