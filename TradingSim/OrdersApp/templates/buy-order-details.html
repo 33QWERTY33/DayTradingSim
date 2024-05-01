@@ -1,12 +1,48 @@
 {% extends 'layouts/layout.html' %}
 
 {% block content %}
-    <h3>ID: {{ order.id }}</h3>
-    <h3>user: {{ order.user }}</h3>
-    <h3>ticker: {{ order.ticker }}</h3>
-    <h3>Buy Price: {{ order.buyPrice }}</h3>
-    <h3>Cash Amount: {{ order.cashAmount }}</h3>
-    <h3>Stock Amount: {{ order.stockAmount }}</h3>
-    <h3>Sell Trigger: {{ order.sellTrigger }}</h3>
-    <h3>Buy Date: {{ order.buyDate }}</h3>
+<div class="d-flex container justify-content-center">
+    <table style="width:75%" class="table table-dark table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th class="text-center" scope="col">ID</th>
+            <th class="text-center" scope="col">User</th>
+            <th class="text-center" scope="col">Ticker</th>
+            <th class="text-center" scope="col">Buy Price</th>
+            <th class="text-center" scope="col">Cash Amount</th>
+            <th class="text-center" scope="col">Stock Amount</th>
+            <th class="text-center" scope="col">Sell trigger</th>
+            <th class="text-center" scope="col">Buy Date</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    {{ order.id }}
+                </td>
+                <td class="text-center">
+                    {{ order.user }}
+                </td>
+                <td class="text-center">
+                    {{ order.ticker }}
+                </td>
+                <td class="text-center">
+                    {{ order.buyPrice }}
+                </td>
+                <td class="text-center">
+                    {{ order.cashAmount }}
+                </td>
+                <td class="text-center">
+                    {{ order.stockAmount }}
+                </td>
+                <td class="text-center">
+                    {{ order.sellTrigger }}
+                </td>
+                <td class="text-center">
+                    {{ order.buyDate }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
