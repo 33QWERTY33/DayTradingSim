@@ -15,8 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from TradingSim.views import home, info
+from django.urls import path, re_path, include
+from TradingSim.views import home, info, page_not_found
 from TickerApp import urls
 from UsersApp import urls
 from OrdersApp import urls
@@ -29,6 +29,7 @@ urlpatterns = [
     path("ticker/", include('TickerApp.urls')),
     path("user/", include('UsersApp.urls')),
     path("order/", include('OrdersApp.urls')),
-    path("leaderboard/", include("LeaderboardApp.urls"))
+    path("leaderboard/", include("LeaderboardApp.urls")),
+    re_path(r".*", page_not_found, name="404")
 ]
 # master router for the project

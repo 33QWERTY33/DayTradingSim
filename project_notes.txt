@@ -8,6 +8,8 @@ Overview:
         Explanation:
             - gather real time stock data using looping and yfinance API
 
+current task: add a 404 page with re_path
+
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
     'open', 'previousClose', 'quoteType', 'regularMarketPreviousClose', 'shares', 'tenDayAverageVolume', 'threeMonthAverageVolume', 'timezone',\

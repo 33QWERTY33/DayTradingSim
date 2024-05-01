@@ -11,3 +11,6 @@ def home(request):
 
 def info(request):
     return render(request, "info.html")
+
+def page_not_found(request):
+    return render(request, "page-not-found.html")
