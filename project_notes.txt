@@ -8,11 +8,6 @@ Overview:
         Explanation:
             - gather real time stock data using looping and yfinance API
 
-Current Task:
-    - implement the sell trigger using the history method of the yfinance api
-Improvement Ideas:
-    - create a matplotlib plot using some of the history data, save the image to a media directory, then load it to the frontend, possibly in the buy order details behind a button called generate
-    
 Notes:
     - dict keys for yfinance api ['currency', 'dayHigh', 'dayLow', 'exchange', 'fiftyDayAverage', 'lastPrice', 'lastVolume', 'marketCap',\
     'open', 'previousClose', 'quoteType', 'regularMarketPreviousClose', 'shares', 'tenDayAverageVolume', 'threeMonthAverageVolume', 'timezone',\

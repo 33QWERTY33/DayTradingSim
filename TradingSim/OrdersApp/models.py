@@ -8,7 +8,6 @@ class BuyOrders(models.Model):
     buyPrice = models.FloatField()
     cashAmount = models.FloatField()
     stockAmount = models.FloatField()
-    sellTrigger = models.FloatField()
     buyDate = models.DateField()
     totalPercentage = None
 

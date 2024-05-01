@@ -21,7 +21,6 @@ def place_buy_order(request):
             new_buy_order.buyPrice = float(TickerBase(new_buy_order.ticker).get_info().get("currentPrice") or TickerBase(new_buy_order.ticker).get_info().get("navPrice"))
             new_buy_order.stockAmount = float(request.POST.get("stockAmount"))
             new_buy_order.cashAmount = new_buy_order.buyPrice * new_buy_order.stockAmount
-            new_buy_order.sellTrigger = float(request.POST.get("sellTrigger"))
             new_buy_order.buyDate = datetime.now().date()
 
             # setting BuyOrders necessary fields
