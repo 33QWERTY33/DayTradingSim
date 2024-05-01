@@ -20,6 +20,7 @@ from TradingSim.views import home, info
 from TickerApp import urls
 from UsersApp import urls
 from OrdersApp import urls
+from LeaderboardApp import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
@@ -27,6 +28,7 @@ urlpatterns = [
     path("info/", info, name="info"),
     path("ticker/", include('TickerApp.urls')),
     path("user/", include('UsersApp.urls')),
-    path("order/", include('OrdersApp.urls'))
+    path("order/", include('OrdersApp.urls')),
+    path("leaderboard/", include("LeaderboardApp.urls"))
 ]
 # master router for the project

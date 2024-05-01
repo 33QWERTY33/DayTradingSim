@@ -4,36 +4,6 @@
     Home
 {% endblock %}
 
-{% comment %} {% block content %}
-    {% if user.is_authenticated %}
-        <a class="btn btn-success" href="{% url 'order:buy-order' %}">Buy Order</a>
-        <a class="btn btn-success" href="{% url 'order:sell-order' %}">Sell Order</a>
-
-        <h3>Trading stats: </h3>
-            <p>Total Profit: {{ stats.total_profit }}</p>
-            <p>Highest Profit: {{ stats.max_profit }}</p>
-            <p>Average Profit: {{ stats.avg_profit }}</p>
-            <p>Average Buy/Sell Duration: {{ stats.avg_buy_sell_duration }} days</p>
-            <p>Current Portfolio Amount: {{ stats.total_portfolio }}</p>
-            <p>Amount of liquid portfolio: {{ stats.liquid_portfolio }}</p>
-            <p>Amount Currently Invested: {{ stats.invested_portfolio }}</p>
-        <h3>Current Buy Orders: </h3>
-            {% for buy_order in stats.buy_orders %}
-                <a href="{% url 'order:buy-order-details' id=buy_order.id %}">
-                    --> ID: {{ buy_order.id }} | {{buy_order.buyDate}} | {{ buy_order.ticker }} | {{ buy_order.stockAmount }} <--
-                </a><br>
-            {% endfor %}
-        <h3>Complete Sell Orders: </h3>
-            {% for sell_order in stats.sell_orders %}
-                <a href="{% url 'order:sell-order-details' id=sell_order.id %}">
-                    --> {{ sell_order.ticker }} | {{ sell_order.buyPrice }} | {{ sell_order.sellPrice }} | {{ sell_order.buyDate }} | {{ sell_order.sellDate }} | {{ sell_order.profit }} <--
-                </a><br>
-            {% endfor %}
-    {% else %}
-        <h1>Please log in to view the home page</h1>
-    {% endif %}
-{% endblock %} {% endcomment %}
-
 {% block content %}
 {% if user.is_authenticated %}
 <div class="d-flex container justify-content-center">
@@ -44,8 +14,8 @@
         <thead>
         <tr>
             <th class="text-center" scope="col">Total Profit So Far</th>
-            <th class="text-center" scope="col">Highest Profit</th>
-            <th class="text-center"scope="col">Average Profit</th>
+            <th class="text-center" scope="col">Highest Profit In One Sale</th>
+            <th class="text-center"scope="col">Average Profit Per Sale</th>
             <th class="text-center"scope="col">Average buy/sell Cycle In Days</th>
         </tr>
         </thead>

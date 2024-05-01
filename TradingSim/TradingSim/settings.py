@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TickerApp',
     'UsersApp',
-    'OrdersApp'
+    'OrdersApp',
+    'LeaderboardApp'
 ]
 
 MIDDLEWARE = [
