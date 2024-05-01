@@ -19,3 +19,7 @@ a {
 .confirmation-modal {
     background-color: #000000;
 }
+
+.hidden {
+    display: none;
+}

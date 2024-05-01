@@ -8,12 +8,10 @@ from .models import UserPortfolio
 def signup_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
-        print("FORM CREATED")
         if form.is_valid():
             new_user_portfolio = UserPortfolio()
             new_user_portfolio.username = form.data.get("username")
             new_user_portfolio.portfolioAmount = 25_000
-            print("FORM WAS VALID")
             form.save()
             new_user_portfolio.save()
             return redirect("home")

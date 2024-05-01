@@ -9,7 +9,6 @@ class BuyOrders(models.Model):
     cashAmount = models.FloatField()
     stockAmount = models.FloatField()
     sellTrigger = models.FloatField()
-    pending = models.BooleanField()
     buyDate = models.DateField()
 
     def __str__(self):
@@ -40,7 +39,6 @@ class SellOrders(models.Model):
     cashAmount: will be a float storing the cash amount used to purchase the stocks
     stockAmount: will be a float storing the amount of stocks the order gained the user
     sellTrigger: will be a float storing the price at which the user will automatically sell the stock
-    pending: pending is a bool, when set to false remove the record from CurrentMarketOrders and place in CompleteMarketOrders where sellprice and profit fields will be added
     buydate: the date the order was placed on to assist with data vis for user
 
     CompleteMarketOrders schema:

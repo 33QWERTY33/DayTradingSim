@@ -1,12 +1,21 @@
 {% extends 'layouts/layout.html' %}
 
+{% block modalBody %}
+    Your current portfolio is: {{ portfolio.totalPortfolioAmount }}
+{% endblock modalBody %}
+
+{% block confirmBtnContent %}
+    Yes
+{% endblock confirmBtnContent %}
+
 {% block content %}
 
     {% load static %}
     <script src="{% static 'scripts/loading_graphic_trig.js' %}"></script>
+    <script src="{% static 'scripts/modal_submit.js' %}"></script>
 
     <h1>Place a Buy Order</h1>
-    <form action="{% url 'order:buy-order' %}" method="post">
+    <form action="{% url 'order:buy-order' %}" method="post" id="order-form">
         {% csrf_token %}
         <input type="hidden" name="username" value="{{ user.username }}">
 
@@ -16,9 +25,9 @@
         <label for="stockAmount">Stock Amount: </label>
         <input type="text" name="stockAmount" required><br>
 
-        <label for="sellTrigger">Sell Trigger: </label>
-        <input type="text" name="sellTrigger"><br>
+        <label for="sellTrigger">Sell Trigger (optional): </label>
+        <input type="text" name="sellTrigger" value="0"><br>
 
-        <button class="btn btn-success" id="loadModalTrigger">Submit</button>
+        <button type="button" class="btn btn-success" id="loadModalTrigger" data-bs-toggle="modal" data-bs-target="#confirmModal">Submit</button>
     </form>
 {% endblock content %}
