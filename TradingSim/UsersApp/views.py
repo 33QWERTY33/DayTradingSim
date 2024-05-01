@@ -11,7 +11,9 @@ def signup_user(request):
         if form.is_valid():
             new_user_portfolio = UserPortfolio()
             new_user_portfolio.username = form.data.get("username")
-            new_user_portfolio.portfolioAmount = 25_000
+            new_user_portfolio.totalPortfolioAmount = 25_000
+            # creating a new user portfolio for the new user
+            # NOTE: when creating a super user, they must add their own portfolio through the interface admin if they intend to use the application with that account
             form.save()
             new_user_portfolio.save()
             return redirect("home")
@@ -26,6 +28,7 @@ def login_user(request):
             login(request, form.get_user())
             if "next" in request.POST:
                 return redirect(request.POST.get("next"))
+                # sends the user to the 
             else:
                 return redirect("home")
     else:
@@ -39,5 +42,7 @@ def logout_user(request):
 def delete_account(request):
     username = request.user
     user = User.objects.get(username=username)
-    # user.delete()
+    user.delete()
     return redirect("home")
+
+# everything is basically handled here by django forms

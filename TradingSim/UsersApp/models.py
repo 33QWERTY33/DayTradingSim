@@ -9,3 +9,11 @@ class UserPortfolio(models.Model):
 
     def __str__(self):
         return f"{self.username}'s portfolio details"
+    
+'''
+    UserPortfolio Schema:
+        username: will be set to request.user
+        totalPortfolioAmount: by default is set to 25,000 in appropriate view (no default cause there could be a tier system in the future)
+        liquidAmount: spendable money, basically totalPortfolioAmount - investedAmount
+        investedAmount: the amount of money that's invested currently, basically a sum of all the BuyOrder cashAmounts tied to that user
+'''

@@ -29,3 +29,4 @@ urlpatterns = [
     path("user/", include('UsersApp.urls')),
     path("order/", include('OrdersApp.urls'))
 ]
+# master router for the project

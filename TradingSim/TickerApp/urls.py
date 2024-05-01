@@ -8,3 +8,4 @@ urlpatterns = [
     path("display-ticker-info/", display_ticker_info, name="ticker-info"),
     path("incorrect-ticker", incorrect_ticker, name="incorrect-ticker")
 ]
+# router for Ticker App

@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'Data',
         'HOST': 'tradingsimaccountdata.cl06m4ie8jy6.us-east-2.rds.amazonaws.com',
         'USER': 'root',
-        'PASSWORD': 'TotallyEasyToRemember!?',
+        'PASSWORD': 'TotallyEasyToRemember!?', #somehow I keep forgetting this password
         'PORT': 3306
     }
 }

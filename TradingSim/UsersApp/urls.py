@@ -9,3 +9,4 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
     path("delete-account/", delete_account, name="delete-account")
 ]
+# router for Users App

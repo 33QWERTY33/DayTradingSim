@@ -11,26 +11,23 @@ def place_buy_order(request):
         try:
             new_buy_order = BuyOrders()
 
-            user = request.POST.get("username")
-            ticker = request.POST.get("ticker").upper()
-            buyprice = float(TickerBase(ticker).get_info().get("currentPrice") or TickerBase(ticker).get_info().get("navPrice"))
-            stockAmount = float(request.POST.get("stockAmount"))
-            cashAmount = buyprice * stockAmount
-            sellTrigger = float(request.POST.get("sellTrigger"))
-            pending = True
-            buydate = datetime.now().date()
+            new_buy_order.user = request.POST.get("username")
+            new_buy_order.ticker = request.POST.get("ticker").upper()
+            new_buy_order.buyPrice = float(TickerBase(new_buy_order.ticker).get_info().get("currentPrice") or TickerBase(new_buy_order.ticker).get_info().get("navPrice"))
+            new_buy_order.stockAmount = float(request.POST.get("stockAmount"))
+            new_buy_order.cashAmount = new_buy_order.buyprice * new_buy_order.stockAmount
+            new_buy_order.sellTrigger = float(request.POST.get("sellTrigger"))
+            new_buy_order.buyDate = datetime.now().date()
 
-            new_buy_order.user = user
-            new_buy_order.ticker = ticker
-            new_buy_order.buyPrice = buyprice
-            new_buy_order.stockAmount = stockAmount
-            new_buy_order.cashAmount = cashAmount
-            new_buy_order.sellTrigger = sellTrigger
-            new_buy_order.pending = pending
-            new_buy_order.buyDate = buydate
+            # setting BuyOrders necessary fields
 
-            user_portfolio.investedAmount += cashAmount
+            if new_buy_order.cashAmount > user_portfolio.liquidAmount:
+                return redirect("order:insufficient-funds")
+            # broke people land
+
+            user_portfolio.investedAmount += new_buy_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
+            # updating UserPortfolio fields
 
             user_portfolio.save()
             new_buy_order.save()
@@ -59,9 +56,12 @@ def place_sell_order(request):
             sell_order.buyDate = buy_order.buyDate
             sell_order.sellDate = datetime.now().date()
 
+            # setting necessary SellOrder fields
+
             user_portfolio.totalPortfolioAmount += sell_order.profit
             user_portfolio.investedAmount -= sell_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
+            # updating UserPortfolio fields
 
             buy_order.delete()
             user_portfolio.save()
@@ -84,3 +84,6 @@ def buy_order_details(request, id):
     order = BuyOrders.objects.get(id=id)
 
     return render(request, "buy-order-details.html", {"order": order})
+
+def insufficient_funds(request):
+    return render(request, "insufficient-funds.html")

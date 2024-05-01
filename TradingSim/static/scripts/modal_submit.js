@@ -1,19 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("submitButton").addEventListener("click", function(event) {
         event.preventDefault()
+        // It already has its own click event tied to that button, so I'm just going to stop that to be safe
         
         var form = document.getElementById("order-form");
-        console.log("SUBMITTING FORM...")
         form.submit();
     });
-
-    // function triggerFormSubmission() {
-    //     var submitButton = document.getElementById("submitButton");
-    //     var clickEvent = new MouseEvent("click", {
-    //         bubbles: true,
-    //         cancelable: true,
-    //         view: window
-    //     });
-    //     submitButton.dispatchEvent(clickEvent);
-    // }
 });

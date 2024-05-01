@@ -12,8 +12,9 @@ const add_invisible = function() {
 }
 document.addEventListener("DOMContentLoaded", ()=>{add_invisible()});
 
-window.addEventListener("beforeunload", ()=>{setTimeout(()=>{add_invisible()}, 1200)});
+window.addEventListener("beforeunload", ()=>{setTimeout(()=>{add_invisible()}, 1200)}); //CLUNKY!!
 
+// unloading the stupid loading animation thing
 
 // ##############################################################   WIP   ##############################################################
 // const add_invisible_onclick = function(elementID) {

@@ -13,3 +13,5 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.send();
     });
 });
+
+// seperated loading_graphic_trig.js and this file so they could be loaded more selectively to avoid errors from javascript not finding elements by id

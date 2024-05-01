@@ -9,7 +9,7 @@ Overview:
             - gather real time stock data using looping and yfinance API
 
 Current Task:
-    - fix the bug where submitting buy and sell forms doesn't actually wait for you to confirm
+    - prevent a user without enough money from placing an order too big
     
 Improvement Ideas:
     - add a confirmation modal with more info to the buy order, and sell order views (currently there is just a regular conf modal, I can implement the increase information idea by adding blocks into the modal, then placing the data gathered from the view inside of the blocks inside of the place-buy-order and place-sell-order views)

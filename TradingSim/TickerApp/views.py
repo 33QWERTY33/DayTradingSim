@@ -21,6 +21,7 @@ def display_ticker_info(request):
         current_info = ticker_obj.get_info()
     except YFinanceException:
         return redirect("ticker:incorrect-ticker")
+    # handling incorrect ticker input
 
     current_info = ticker_obj.get_info()
 

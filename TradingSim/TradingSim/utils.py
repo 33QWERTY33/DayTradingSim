@@ -16,13 +16,13 @@ def collectStats(request):
     buy_dates = [date[0] for date in sell_orders.values_list("buyDate")]
 
     sell_dates = [date[0] for date in sell_orders.values_list("sellDate")]
-
+    # get lists of datetime.date objects
     buy_sell_date_list = [pair for pair in zip(sell_dates, buy_dates)]
-
+    # zip lists
     date_delta_list = [(sell - buy).days for sell, buy in buy_sell_date_list]
-
+    # use datetime.date.__sub__ to find the difference, then take the days attribute of the result obj for pair in buy_sell_date_list
     avg_buy_sell_duration =  np.sum(date_delta_list) / len(date_delta_list)
-
+    # finding the average... I thought I'd have way more uses for numpy
     user_portfolio = UserPortfolio.objects.get(username=request.user)
 
     total_portfolio = user_portfolio.totalPortfolioAmount
