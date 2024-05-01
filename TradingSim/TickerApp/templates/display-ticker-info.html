@@ -5,20 +5,68 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ data.symbol }} Information</h1>
-    
-    <p>Current Price: {{ data.currentPrice }}</p>
-    <p>Days High: {{ data.dayHigh }}</p>
-    <p>Days Low: {{ data.dayLow }}</p>
-    <p>Open: {{ data.regularMarketOpen }}</p>
-    <p>Close: {{ data.regularMarketPreviousClose }}</p>
-    <p>Full Name: {{ data.longName }}</p>
-    <p>Volume: {{ data.volume }}</p>
-    <p>Average 10 day volume: {{ data.averageVolume10days }}</p>
-    <p>Type: {{ data.quoteType }}</p>
 
-    <h3>Recent News: </h3>
-    {% for article in news %}
-        <a href="{{ article.link }}">{{ article.title }}</a><br/>
-    {% endfor %}
+<div class="d-flex container justify-content-center">
+    <h1 class='text-center'>{{ data.symbol }} Information</h1>
+</div>
+<div class="d-flex container justify-content-center">
+    <table style="width:75%" class="table table-dark table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Current Price</th>
+            <th scope="col">Days High</th>
+            <th scope="col">Days Low</th>
+            <th scope="col">Open</th>
+            <th scope="col">Close</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Avg 10day Volume</th>
+            <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{ data.currentPrice }}
+                </td>
+                <td>
+                    {{ data.dayHigh }}
+                </td>
+                <td>
+                    {{ data.dayLow }}
+                </td>
+                <td>
+                    {{ data.regularMarketOpen }}
+                </td>
+                <td>
+                    {{ data.regularMarketPreviousClose }}
+                </td>
+                <td>
+                    {{ data.longName }}
+                </td>
+                <td>
+                    {{ data.volume }}
+                </td>
+                <td>
+                    {{ data.averageVolume10days }}
+                </td>
+                <td>
+                    {{ data.quoteType }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h3>Recent News: </h3>
+    </div>
+    <div class="">
+        <ul>
+            {% for article in news %}
+                <li><a href="{{ article.link }}">{{ article.title }}</a><br/></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
