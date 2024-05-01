@@ -11,7 +11,6 @@ Overview:
 Current Task:
     - implement the sell trigger using the history method of the yfinance api
 Improvement Ideas:
-    - create a leaderboard for different users and put it in the navbar 
     - create a matplotlib plot using some of the history data, save the image to a media directory, then load it to the frontend, possibly in the buy order details behind a button called generate
     
 Notes:

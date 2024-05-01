@@ -31,6 +31,9 @@ def collectStats(request):
 
     invested_portfolio = user_portfolio.investedAmount
 
+    liquid_percent = round((liquid_portfolio / total_portfolio) * 100, 2)
+    invested_percent = round((invested_portfolio / total_portfolio) * 100, 2)
+
     for order in buy_orders:
         order.totalPercentage = round((order.cashAmount / total_portfolio) * 100, 2)
 
@@ -38,4 +41,5 @@ def collectStats(request):
         order.totalPercentage = round((order.profit / total_profit) * 100, 2)
 
     return {"buy_orders": buy_orders, "sell_orders": sell_orders, "total_profit": total_profit, "max_profit": max_profit, "avg_profit": avg_profit, 
-            "avg_buy_sell_duration": avg_buy_sell_duration,"total_portfolio": total_portfolio, "liquid_portfolio": liquid_portfolio, "invested_portfolio": invested_portfolio}
+            "avg_buy_sell_duration": avg_buy_sell_duration,"total_portfolio": total_portfolio, "liquid_portfolio": liquid_portfolio,
+            "invested_portfolio": invested_portfolio, "liquid_percent": liquid_percent, "invested_percent":invested_percent}

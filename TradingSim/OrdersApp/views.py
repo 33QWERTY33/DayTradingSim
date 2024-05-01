@@ -4,6 +4,7 @@ from yfinance.base import TickerBase
 from datetime import datetime
 from UsersApp.models import UserPortfolio
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 # Create your views here.
 @login_required(login_url="/user/login")
@@ -11,13 +12,15 @@ def place_buy_order(request):
     user_portfolio = UserPortfolio.objects.get(username=request.user)
     if request.method == "POST":
         try:
+            hour = datetime.now().hour
+
             new_buy_order = BuyOrders()
 
             new_buy_order.user = request.POST.get("username")
             new_buy_order.ticker = request.POST.get("ticker").upper()
             new_buy_order.buyPrice = float(TickerBase(new_buy_order.ticker).get_info().get("currentPrice") or TickerBase(new_buy_order.ticker).get_info().get("navPrice"))
             new_buy_order.stockAmount = float(request.POST.get("stockAmount"))
-            new_buy_order.cashAmount = new_buy_order.buyprice * new_buy_order.stockAmount
+            new_buy_order.cashAmount = new_buy_order.buyPrice * new_buy_order.stockAmount
             new_buy_order.sellTrigger = float(request.POST.get("sellTrigger"))
             new_buy_order.buyDate = datetime.now().date()
 
@@ -27,13 +30,22 @@ def place_buy_order(request):
                 return redirect("order:insufficient-funds")
             # broke people land
 
+            # REMOVE THIS BLOCK FOR THE PRESENTATION
+
+            if hour < 9 or hour > 16:
+                return redirect("order:outside-market-hours")
+            # This one is difficult to test, manually changing the time messes up the yfinance web scrapers
+            # filter worked before 9:00, just have to test after 4
+
+            # REMOVE THIS BLOCK FOR THE PRESENTATION
+
             user_portfolio.investedAmount += new_buy_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
             # updating UserPortfolio fields
 
             user_portfolio.save()
             new_buy_order.save()
-        except:
+        except ZeroDivisionError:
             return redirect("ticker:incorrect-ticker")
 
         return redirect("home")
@@ -89,3 +101,6 @@ def buy_order_details(request, id):
 
 def insufficient_funds(request):
     return render(request, "insufficient-funds.html")
+
+def not_market_hours(request):
+    return render(request, "not-market-hours.html")
