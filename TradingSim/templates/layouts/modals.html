@@ -3,11 +3,12 @@
 {% block confirmationModal %}
     <div class="modal fade confirmation-modal" id="confirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content border">
-            <div class="modal-header bg-dark">
-            <h1 class="modal-title fs-5 bg-dark text-white">Are You Sure?</h1>
-            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" id="closeModalXBtn"></button>
-            </div>
+            {% block imageToggle %}
+                <div class="modal-content border">
+                    <div class="modal-header bg-dark">
+                    <h1 class="modal-title fs-5 bg-dark text-white">Are You Sure?</h1>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" id="closeModalXBtn"></button>
+                </div>
             <div class="modal-body bg-dark text-white">
                 {% block modalBody %}
                     There is no going back after selecting "yes"
@@ -19,9 +20,10 @@
                             <a class="nav-link active" aria-current="page" href="{% url 'user:delete-account' %}">Yes</a>
                         {% endblock ConfirmBtnContent %}
                     </button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeModalNoBtn">No</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeModalNoBtn">No</button>
             </div>
         </div>
+        {% endblock imageToggle %}
         </div>
     </div>
 {% endblock confirmationModal %}
