@@ -35,6 +35,7 @@ Notes:
                 E.g. for end="2023-01-01", the last data point will be on "2022-12-31"
 
 Features Proposal
-    - a line graph visual of the buy price, utilize history method, potentially matplotlib
+    - plot ideas:
+        - bar plot showing profit amount and dates
 
 DB password: TotallyEasyToRemember!?

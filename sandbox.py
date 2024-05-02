@@ -8,7 +8,7 @@ x = [1, 2, 3, 4, 5]
 y = [2, 3, 5, 7, 11]
 
 # Create a plot with light-colored lines and markers
-plt.plot(x, y, color='lightblue', marker='o', markersize=8, linewidth=2)
+plt.bar(x, y)
 
 # Add labels and title
 plt.xlabel('X-axis label', color='lightgray')

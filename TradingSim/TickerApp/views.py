@@ -58,7 +58,6 @@ def display_ticker_info(request):
         plt.ylabel("Price")
 
         plt.axhline(price_history.mean(), color="yellow", linestyle="--")
-        plt.text(2, 10.5, 'Horizontal Line Label', color='red', fontsize=12, ha='center')
 
         plt.savefig(os.path.join("static", "assets", "tickerReports", "2YearReport.png"))
 

@@ -2,6 +2,8 @@ import numpy as np
 from django.db.models import Sum, Max, Avg
 from OrdersApp.models import BuyOrders, SellOrders
 from UsersApp.models import UserPortfolio
+import matplotlib.pyplot as plt
+import os
 
 def collectStats(request):
     buy_orders = BuyOrders.objects.filter(user=request.user).order_by("-id")
@@ -39,6 +41,25 @@ def collectStats(request):
 
     for order in sell_orders:
         order.totalPercentage = round((order.profit / total_profit) * 100, 2)
+
+    orders = [order for order in sell_orders]
+
+    profits = [profit.profit for profit in orders]
+
+    dates = [date.sellDate.strftime('%Y-%m-%d') for date in orders]
+
+    plt.style.use('dark_background')
+
+    plt.figure(figsize=(15, 10))
+
+    plt.bar(dates, profits)
+
+    plt.title("Profits by Date")
+
+    plt.xlabel("Date")
+    plt.ylabel("Profit")
+
+    plt.savefig(os.path.join("static", "assets", "userStats", "profitReport.png"))
 
     return {"buy_orders": buy_orders, "sell_orders": sell_orders, "total_profit": total_profit, "max_profit": max_profit, "avg_profit": avg_profit, 
             "avg_buy_sell_duration": avg_buy_sell_duration,"total_portfolio": total_portfolio, "liquid_portfolio": liquid_portfolio,

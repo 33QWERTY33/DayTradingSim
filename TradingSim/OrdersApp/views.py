@@ -23,20 +23,17 @@ def place_buy_order(request):
             new_buy_order.cashAmount = new_buy_order.buyPrice * new_buy_order.stockAmount
             new_buy_order.buyDate = datetime.now().date()
 
+
             # setting BuyOrders necessary fields
 
             if new_buy_order.cashAmount > user_portfolio.liquidAmount:
                 return redirect("order:insufficient-funds")
             # broke people land
 
-            # REMOVE THIS BLOCK FOR THE PRESENTATION
-
-            if hour < 9 or hour > 16:
-                return redirect("order:outside-market-hours")
-            # This one is difficult to test, manually changing the time messes up the yfinance web scrapers
-            # filter worked before 9:00, just have to test after 4
-
-            # REMOVE THIS BLOCK FOR THE PRESENTATION
+            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
+            # if hour < 9 or hour > 16:
+                # return redirect("order:outside-market-hours")
+            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
 
             user_portfolio.investedAmount += new_buy_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
@@ -56,6 +53,8 @@ def place_sell_order(request):
     if request.method == "POST":
         id = request.POST.get('id')
         try:
+            hour = datetime.now().hour
+
             buy_order = BuyOrders.objects.get(id=id)
             sell_order = SellOrders()
             sell_order.id = buy_order.id
@@ -75,6 +74,11 @@ def place_sell_order(request):
             user_portfolio.investedAmount -= sell_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
             # updating UserPortfolio fields
+            
+            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
+            # if hour < 9 or hour > 16:
+            #     return redirect("order:outside-market-hours")
+            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
 
             buy_order.delete()
             user_portfolio.save()
