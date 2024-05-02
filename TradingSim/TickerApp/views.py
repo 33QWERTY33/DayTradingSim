@@ -17,7 +17,8 @@ def display_ticker_info(request):
         ticker_obj = TickerBase(request.POST.get("ticker"))
         # store ticker object
 
-        keys_used = ["currentPrice", "symbol", "longName", "averageVolume10days", "quoteType", "dayHigh", "dayLow", "regularMarketOpen", "regularMarketPreviousClose"]
+
+        keys_used = ["currentPrice", "symbol", "longName", "volume", "averageVolume10days", "quoteType", "dayHigh", "dayLow", "regularMarketOpen", "regularMarketPreviousClose"]
         # list of keys used in webpage to set default vals
 
         try:
@@ -25,13 +26,19 @@ def display_ticker_info(request):
         except YFinanceException:
             return redirect("ticker:incorrect-ticker")
         # handling incorrect ticker input
+        
+        if ticker_obj.get_info() == {'trailingPegRatio': None}:
+            return redirect("ticker:incorrect-ticker")
 
         current_info = ticker_obj.get_info()
 
         try:
             current_info["currentPrice"]
         except KeyError:
-            current_info["currentPrice"] = current_info["navPrice"]
+            try:
+                current_info["currentPrice"] = current_info["navPrice"]
+            except KeyError:
+                redirect("ticker:incorrect-ticker")
         # stocks current price is stored in currentPrice key, ETF current price is stored in navPrice
         
         for key in keys_used:

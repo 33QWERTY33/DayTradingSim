@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from .models import UserPortfolio
+from OrdersApp.models import SellOrders, BuyOrders
 
 # Create your views here.
 def signup_user(request):
@@ -42,6 +43,13 @@ def logout_user(request):
 def delete_account(request):
     username = request.user
     user = User.objects.get(username=username)
+    user_portfolio = UserPortfolio.objects.get(username=username)
+    sell_orders = SellOrders.objects.filter(user=username)
+    buy_orders = BuyOrders.objects.filter(user=username)
+
+    for buy in buy_orders: buy.delete()
+    for sell in sell_orders: sell.delete()
+    user_portfolio.delete()
     user.delete()
     return redirect("home")
 

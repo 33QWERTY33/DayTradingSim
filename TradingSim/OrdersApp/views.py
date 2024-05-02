@@ -94,6 +94,9 @@ def place_sell_order(request):
 def sell_order_details(request, id):
     order = SellOrders.objects.get(id=id)
 
+    order.buyPrice = round(order.buyPrice, 2)
+    order.cashAmount = round(order.cashAmount, 2)
+
     return render(request, "sell-order-details.html", {"order": order})
 
 def buy_order_details(request, id):

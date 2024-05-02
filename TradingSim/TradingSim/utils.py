@@ -15,6 +15,11 @@ def collectStats(request):
 
     avg_profit = SellOrders.objects.filter(user=request.user).aggregate(avg_profit=Avg('profit')).get("avg_profit")
 
+    if total_profit == None:
+        total_profit, max_profit, avg_profit = 0, 0, 0
+    else:
+        total_profit, max_profit, avg_profit = round(total_profit, 2),  round(max_profit, 2),  round(avg_profit,)
+
     buy_dates = [date[0] for date in sell_orders.values_list("buyDate")]
 
     sell_dates = [date[0] for date in sell_orders.values_list("sellDate")]
@@ -27,11 +32,11 @@ def collectStats(request):
     # finding the average... I thought I'd have way more uses for numpy
     user_portfolio = UserPortfolio.objects.get(username=request.user)
 
-    total_portfolio = user_portfolio.totalPortfolioAmount
+    total_portfolio = round(user_portfolio.totalPortfolioAmount, 2)
 
-    liquid_portfolio = user_portfolio.liquidAmount
+    liquid_portfolio = round(user_portfolio.liquidAmount, 2)
 
-    invested_portfolio = user_portfolio.investedAmount
+    invested_portfolio = round(user_portfolio.investedAmount, 2)
 
     liquid_percent = round((liquid_portfolio / total_portfolio) * 100, 2)
     invested_percent = round((invested_portfolio / total_portfolio) * 100, 2)
