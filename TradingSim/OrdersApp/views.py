@@ -31,8 +31,8 @@ def place_buy_order(request):
             # broke people land
 
             # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
-            # if hour < 9 or hour > 16:
-                # return redirect("order:outside-market-hours")
+            if hour < 9 or hour > 16:
+                return redirect("order:outside-market-hours")
             # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
 
             user_portfolio.investedAmount += new_buy_order.cashAmount
@@ -76,8 +76,8 @@ def place_sell_order(request):
             # updating UserPortfolio fields
             
             # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
-            # if hour < 9 or hour > 16:
-            #     return redirect("order:outside-market-hours")
+            if hour < 9 or hour > 16:
+                return redirect("order:outside-market-hours")
             # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
 
             buy_order.delete()

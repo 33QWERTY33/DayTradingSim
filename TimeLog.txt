@@ -2,4 +2,5 @@
 - Curtis | Apr 29 | 11:59:42 - 20:02:43 | 4 commits with 6 hours of studying
 - Curtis | Apr 30 | 02:07:06 - 15:06:47 | 12 commits
 - Curtis | May 01 | 04:51:05 - 09:29:10 | 13 commits
-- Total = ~21 hours working, 6 hours studying
+- Curtis | May 02 | 00:00:00 - 01:51:00 | 2 commits
+- Total = ~23 hours working, 6 hours studying
