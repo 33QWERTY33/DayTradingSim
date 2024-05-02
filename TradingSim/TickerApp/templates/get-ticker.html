@@ -9,7 +9,6 @@
     <script src="{% static 'scripts/loading_graphic_trig.js' %}"></script>
     <div class="container">
         <form action="{% url 'ticker:ticker-info' %}" method="post">
-            {% csrf_token %}
             <h3>Ticker: </h3>
             <input type="text" id="ticker" name="ticker" class="form-control">
             <div class="d-flex justify-content-center pt-3">

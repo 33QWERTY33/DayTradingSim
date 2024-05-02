@@ -10,7 +10,6 @@
 </div>
 <div class="d-flex justify-content-center">
     <form action="{% url 'user:login' %}" method="post" class="row">
-        {% csrf_token %}
         {{ form }}
         {% if request.GET.next  %}
             <input type="hidden" name="next" value="{{ request.GET.next }}"/>

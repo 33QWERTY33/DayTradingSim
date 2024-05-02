@@ -14,16 +14,13 @@
     <script src="{% static 'scripts/loading_graphic_trig.js' %}"></script>
     <script src="{% static 'scripts/modal_submit.js' %}"></script>
 
-    <h1>Place a Buy Order</h1>
-    <form action="{% url 'order:buy-order' %}" method="post" id="order-form">
-        {% csrf_token %}
+    <h1 class="text-center">Place a Buy Order</h1>
+    <form action="{% url 'order:buy-order' %}" method="post" id="order-form" class="d-flex justify-content-center">
         <input type="hidden" name="username" value="{{ user.username }}">
 
-        <label for="ticker">Ticker: </label>
-        <input type="text" name="ticker" required><br>
+        <input type="text" name="ticker" placeholder="Ticker" required><br>
 
-        <label for="stockAmount">Stock Amount: </label>
-        <input type="text" name="stockAmount" required><br>
+        <input type="text" name="stockAmount" placeholder="Stock Amount" required><br>
 
         <button type="button" class="btn btn-success" id="loadModalTrigger" data-bs-toggle="modal" data-bs-target="#confirmModal">Submit</button>
     </form>

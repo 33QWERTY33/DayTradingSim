@@ -19,8 +19,8 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'user:logout' %}">Log Out</a>
                 </li>
                 <li class="nav-item">
-                  <button class="navbar-button" data-bs-toggle="modal" data-bs-target="#confirmModal">
-                    Delete Account
+                  <button class="navbar-button">
+                    <a class="nav-link active" aria-current="page" href="{% url 'user:delete-account' %}">Delete Account</a>
                   </button>
                 </li>
               {% else %}

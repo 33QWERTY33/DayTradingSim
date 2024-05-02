@@ -15,11 +15,7 @@
                 {% endblock modalBody %}
             </div>
             <div class="modal-footer bg-dark text-white">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="submitButton">
-                        {% block ConfirmBtnContent %}
-                            <a class="nav-link active" aria-current="page" href="{% url 'user:delete-account' %}">Yes</a>
-                        {% endblock ConfirmBtnContent %}
-                    </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="submitButton">yes</button>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeModalNoBtn">No</button>
             </div>
         </div>
