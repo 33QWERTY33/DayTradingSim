@@ -33,3 +33,6 @@ Notes:
                 E.g. for end="2023-01-01", the last data point will be on "2022-12-31"
 
 DB password: TotallyEasyToRemember!?
+
+Current Task:
+    - implement a REST API with django

@@ -123,3 +123,21 @@ updates and changes:
     - you can change DEBUG to False inside of the settings.py file when you are done developing
     - you should typically add 'localhost', and '127.0.0.1' to the ALLOWED_HOSTS list in settings.py
     - you can use re_path in the url.py files to use regular expressions in routing
+
+djangorestframwork:
+    - The Response class located at rest_framework.response will serialize data and pass it through requests
+    - the api_view decorator located at rest_framework.decorators will mark a view as an api view so that django will perform special actions
+    - when creating a an api view you decorate the view func with @api_view, and you pass a list of acceptable http requests i.e. ["GET", "POST"]
+    - you should create a serializers.py file that will handle the serialization of the queryset you get as a result of querying the database
+    - you specify a Meta class inside of the serializer class that you define (research this more later)
+    - you then instantiate your serializer class inside of your api_view function and pass the serializer instance into the Response object from the rest_framework module
+    - when instantiating the Serializer class you should set many to True if you want to receive multiple values, and set it to False for one
+    - setting the safe parameter inside of the JsonResponse instantiation fixes the allow non-dict objects to be serialized error
+    - when setting up individual api endpoints for data, you can use the urls parameter syntax like "api/<int:id>" in the path function from Django.urls
+    - the parameter will get sent into the view that the url is tied to in urlpatterns
+    - you can then use that parameter to query the database for whatever was asked of it
+    - the Response instantiation has a status parameter that is useful for providing feedback about faulty access attempts to api endpoints
+    - To receive raw json data in the web browser without djangos html formatting of the info you can use format_suffix_patterns from rest_framework.urlpatterns
+    - You just override the value of the urlpatterns list in the urls.py file with the return value of format_suffix_patterns(urlpatterns)
+    - then in all of your views you add the format parameter with a default value of None
+    - to access the data in raw json you then just have to add .json to the end of whatever url you are accessing i.e. localhost:8000/api.json or localhost:8000/api/item1.json
