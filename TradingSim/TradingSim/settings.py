@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'TickerApp',
     'UsersApp',
     'OrdersApp',
-    'LeaderboardApp'
+    'LeaderboardApp',
+    'API'
 ]
 
 MIDDLEWARE = [

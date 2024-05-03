@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_ticker, display_ticker_info, incorrect_ticker
+from .views import *
 
 app_name = 'ticker'
 

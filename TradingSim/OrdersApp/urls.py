@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import place_buy_order, place_sell_order, buy_order_details, sell_order_details, insufficient_funds, not_market_hours
+from .views import *
 
 app_name = "order"
 
