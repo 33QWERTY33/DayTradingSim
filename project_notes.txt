@@ -35,4 +35,5 @@ Notes:
 DB password: TotallyEasyToRemember!?
 
 Current Task:
-    - abstract out all of the logic from the form handling views to implement into the REST API
+    - You need to debug the heck out of that API, I don't trust it at all
+    - add functionality for the PUT method for Buy Orders, Sell Orders, and UserPortfolio (you need to fully implement any change to the data should change any related data)

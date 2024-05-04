@@ -82,7 +82,7 @@ def sell_order_by_id(request, id, format=None):
         return Response(serializer.data)
     
     elif request.method == "PUT":
-        serializer = GetBuyOrderSerializer(order, data=request.data)
+        serializer = GetSellOrderSerializer(order, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -104,7 +104,7 @@ def portfolio_by_username(request, user, format=None):
         return Response(serializer.data)
     
     elif request.method == "PUT":
-        serializer = GetBuyOrderSerializer(portfolio, data=request.data)
+        serializer = GetUserPortfolioSerializer(portfolio, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

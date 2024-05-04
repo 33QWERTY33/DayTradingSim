@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -9,12 +8,12 @@ from OrdersApp.models import SellOrders, BuyOrders
 from datetime import datetime
 
 def handle_buy_order(request, rest=False, serializer=None):
+    if rest:
+        user_portfolio = UserPortfolio.objects.get(username=request.data.get("user"))
+    else:
+        user_portfolio = UserPortfolio.objects.get(username=request.user)
 
     if request.method == "POST":
-        if rest:
-            user_portfolio = UserPortfolio.objects.get(username=request.data.get("user"))
-        else:
-            user_portfolio = UserPortfolio.objects.get(username=request.user)
         try:
             hour = datetime.now().hour
 
@@ -37,7 +36,6 @@ def handle_buy_order(request, rest=False, serializer=None):
 
             if new_buy_order.cashAmount > user_portfolio.liquidAmount:
                 if rest:
-                    print("REACHED 1")
                     return Response(status=status.HTTP_412_PRECONDITION_FAILED)
                 else:
                     return redirect("order:insufficient-funds")
@@ -59,20 +57,18 @@ def handle_buy_order(request, rest=False, serializer=None):
             new_buy_order.save()
         except ZeroDivisionError:
             if rest:
-                print("REACHED 2")
                 return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:
                 return redirect("ticker:incorrect-ticker")
         if rest:
-            print("REACHED 3")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return redirect("home")
     if rest:
-        print("REACHED 4")
         return Response(serializer.data)
     else:    
         return render(request, "place-buy-order.html", {"portfolio": user_portfolio})
+    
 
 def handle_sell_order(request, rest=False, serializer=None):
     if request.method == "POST":

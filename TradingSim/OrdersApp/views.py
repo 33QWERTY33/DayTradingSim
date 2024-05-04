@@ -9,12 +9,14 @@ def place_buy_order(request):
     return handle_buy_order(request)
     # logic abstracted out to handlers.py to decrease repetition
     # This logic is also used in the REST API
+    # I kept the view function structure in place to maintain a pattern and make the code more coherent
     
 @login_required(login_url="/user/login")
 def place_sell_order(request):
     return handle_sell_order(request)
     # logic abstracted out to handlers.py to decrease repetition
     # This logic is also used in the REST API
+    # I kept the view function structure in place to maintain a pattern and make the code more coherent
 
 def sell_order_details(request, id):
     order = SellOrders.objects.get(id=id)
