@@ -18,7 +18,7 @@
     <div class="d-flex justify-content-center">
         <form action="{% url 'order:sell-order'%}" method="post" id="order-form" class="d-flex justify-content-center">
             <div class="row">
-                <input type="text" name="id" placeholder="Order ID" required>
+                <input type="text" name="id" style="width:70%" placeholder="Order ID" required>
             </div>
     
             <button type="button" class="btn btn-success row" id="loadModalTrigger" data-bs-toggle="modal" data-bs-target="#confirmModal">Submit</button>

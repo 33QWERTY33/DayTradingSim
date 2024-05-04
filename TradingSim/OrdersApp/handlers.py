@@ -71,6 +71,11 @@ def handle_buy_order(request, rest=False, serializer=None):
     
 
 def handle_sell_order(request, rest=False, serializer=None):
+    if rest:
+        user_portfolio = UserPortfolio.objects.get(username=request.data.get("user"))
+    else:
+        user_portfolio = UserPortfolio.objects.get(username=request.user)
+
     if request.method == "POST":
         if rest:
             id=request.data.get("id")
@@ -91,8 +96,6 @@ def handle_sell_order(request, rest=False, serializer=None):
             sell_order.profit = (buy_order.stockAmount * sell_order.sellPrice )- buy_order.cashAmount
             sell_order.buyDate = buy_order.buyDate
             sell_order.sellDate = datetime.now().date()
-
-            user_portfolio = UserPortfolio.objects.get(username=sell_order.user)
 
             # setting necessary SellOrder fields
 
