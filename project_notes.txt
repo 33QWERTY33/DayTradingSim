@@ -35,4 +35,4 @@ Notes:
 DB password: TotallyEasyToRemember!?
 
 Current Task:
-    - implement a REST API with django
+    - abstract out all of the logic from the form handling views to implement into the REST API

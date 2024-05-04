@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class UserPortfolio(models.Model):
     username = models.CharField(primary_key=True, max_length=100)
-    totalPortfolioAmount = models.FloatField()
+    totalPortfolioAmount = models.FloatField(default=25_000)
     liquidAmount = models.FloatField(default=25_000)
     investedAmount = models.FloatField(default=0.0)
 
