@@ -15,7 +15,6 @@ def handle_buy_order(request, rest=False, serializer=None):
 
     if request.method == "POST":
         try:
-            hour = datetime.now().hour
 
             new_buy_order = BuyOrders()
 
@@ -40,14 +39,6 @@ def handle_buy_order(request, rest=False, serializer=None):
                 else:
                     return redirect("order:insufficient-funds")
             # broke people land
-
-            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
-            # if hour < 9 or hour > 16:
-            #     if rest:
-            #         return Response(status=status.HTTP_412_PRECONDITION_FAILED)
-            #     else:
-            #         return redirect("order:outside-market-hours")
-            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
 
             user_portfolio.investedAmount += new_buy_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
@@ -82,7 +73,6 @@ def handle_sell_order(request, rest=False, serializer=None):
         else:
             id = request.POST.get('id')
         try:
-            hour = datetime.now().hour
 
             buy_order = BuyOrders.objects.get(id=id)
             sell_order = SellOrders()
@@ -103,14 +93,6 @@ def handle_sell_order(request, rest=False, serializer=None):
             user_portfolio.investedAmount -= sell_order.cashAmount
             user_portfolio.liquidAmount = user_portfolio.totalPortfolioAmount - user_portfolio.investedAmount
             # updating UserPortfolio fields
-            
-            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
-            # if hour < 9 or hour > 16:
-            #     if rest:
-            #         return Response(status=status.HTTP_412_PRECONDITION_FAILED)
-            #     else:
-            #         return redirect("order:outside-market-hours")
-            # #####################################  REMOVE FOR PRESENTATION/TESTING #####################################
 
             buy_order.delete()
             user_portfolio.save()

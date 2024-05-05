@@ -34,6 +34,3 @@ def buy_order_details(request, id):
 
 def insufficient_funds(request):
     return render(request, "insufficient-funds.html")
-
-def not_market_hours(request):
-    return render(request, "not-market-hours.html")
